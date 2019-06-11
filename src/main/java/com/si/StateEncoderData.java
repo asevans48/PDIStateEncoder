@@ -19,6 +19,7 @@
 package com.si;
 
 import org.apache.commons.collections.bidimap.DualHashBidiMap;
+import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.trans.step.BaseStepData;
 import org.pentaho.di.trans.step.StepDataInterface;
 
@@ -45,6 +46,7 @@ import org.pentaho.di.trans.step.StepDataInterface;
  */
 public class StateEncoderData extends BaseStepData implements StepDataInterface {
   private DualHashBidiMap stateMap = new DualHashBidiMap();
+  public RowMetaInterface outputRowMeta;
 
   /**
    * Initialize the class.

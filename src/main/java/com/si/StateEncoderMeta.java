@@ -48,6 +48,7 @@ import org.pentaho.metastore.api.IMetaStore;
 import org.w3c.dom.Node;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -139,10 +140,12 @@ public class StateEncoderMeta extends BaseStepMeta implements StepMetaInterface 
   
   public void getFields( RowMetaInterface rowMeta, String origin, RowMetaInterface[] info, StepMeta nextStep, 
     VariableSpace space, Repository repository, IMetaStore metaStore ) throws KettleStepException {
-    ValueMetaInterface v0 = new ValueMetaString(outField);
-    v0.setTrimType(ValueMetaInterface.TRIM_TYPE_BOTH);
-    v0.setOrigin(outField);
-    rowMeta.addValueMeta( v0 );
+    if(!Arrays.asList(rowMeta.getFieldNames()).contains(outField)) {
+      ValueMetaInterface v0 = new ValueMetaString(outField);
+      v0.setTrimType(ValueMetaInterface.TRIM_TYPE_BOTH);
+      v0.setOrigin(outField);
+      rowMeta.addValueMeta(v0);
+    }
   }
   
   public void check( List<CheckResultInterface> remarks, TransMeta transMeta, 

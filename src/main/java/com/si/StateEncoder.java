@@ -109,7 +109,6 @@ public class StateEncoder extends BaseStep implements StepInterface {
     RowMetaInterface inMeta = getInputRowMeta().clone();
     data.outputRowMeta = inMeta;
     meta.getFields(data.outputRowMeta, getStepname(), null, null, this, null, null);
-    //data.outputRowMeta = processRowMeta(data.outputRowMeta);
     first = false;
   }
 
@@ -135,7 +134,7 @@ public class StateEncoder extends BaseStep implements StepInterface {
     }
 
     Object[] outRow = this.encodeOrDecodeState(r);
-    putRow(data.outputRowMeta, r );
+    putRow(data.outputRowMeta, outRow );
 
 
     if ( checkFeedback( getLinesRead() ) ) {

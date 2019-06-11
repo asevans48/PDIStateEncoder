@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:pen="http://www.pentaho.com/xml/schemas/pentaho-blueprint"
+           xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://www.pentaho.com/xml/schemas/pentaho-blueprint http://www.pentaho.com/xml/schemas/pentaho-blueprint.xsd">
+
+    <bean id="StateEncoderMeta" class="com.si.StateEncoderMeta" scope="prototype"/>
+    <bean id="StateEncoderPlugin" class="org.pentaho.di.osgi.OSGIPlugin" scope="prototype">
+        <property name="mainType" value="org.pentaho.di.trans.step.StepMetaInterface"/>
+        <property name="name" value="Encode State"/>
+        <property name="ID" value="StateEncoder"/>
+        <property name="imageFile" value="StateEncoder.svg"/>
+        <property name="description" value="Encodes a state string to an abbreviation."/>
+        <property name="pluginTypeInterface" value="org.pentaho.di.core.plugins.StepPluginType"/>
+        <property name="category" value="Transform"/>
+        <property name="classToBeanMap">
+            <map>
+                <entry key="org.pentaho.di.trans.step.StepMetaInterface" value="StateEncoderMeta"/>
+            </map>
+        </property>
+    </bean>
+    <service id="StateEncoderPluginService" interface="org.pentaho.di.core.plugins.PluginInterface" ref="StateEncoderPlugin">
+        <service-properties>
+            <entry key="PluginType" value="org.pentaho.di.core.plugins.StepPluginType"/>
+        </service-properties>
+    </service>
+  <!--<bean id="StateEncoderData" class="com.si.StateEncoderData" scope="prototype"/>
+
+  <bean id="StateEncoderBean" class="com.si.StateEncoderMeta" scope="prototype">
+    <pen:di-plugin type="org.pentaho.di.core.plugins.StepPluginType">
+    	<pen:di-plugin-mapping class="org.pentaho.di.trans.step.StepDataInterface" ref="StateEncoderData"/>
+    </pen:di-plugin>
+  </bean>-->
+
+  <!-- Define a bean for our new step analyzer -->
+  <bean id="StateEncoderStepAnalyzer" class="com.si.StateEncoderStepAnalyzer" />
+
+  <!--
+    Define our analyzer as a service. This will allow it to be automatically added to the reference-list ultimately used
+    by the TransformationAnalyzer to determine if there is a custom analyzer for a particular BaseStepMeta impl
+    (StateEncoderMeta in this case).
+  -->
+  <service id="StateEncoderStepAnalyzerService"
+           interface="org.pentaho.metaverse.api.analyzer.kettle.step.IStepAnalyzer"
+           ref="StateEncoderStepAnalyzer"/>
+
+</blueprint>

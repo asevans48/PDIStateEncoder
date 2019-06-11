@@ -1,0 +1,7 @@
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+  <feature name="pdi-osgi-step-plugin-archetype-feature" version="8.3.0.0-SNAPSHOT">
+    <bundle>mvn:org.hitachivantara.archetypes/pdi-osgi-step-plugin-archetype/8.3.0.0-SNAPSHOT</bundle>
+  </feature>
+
+</features>

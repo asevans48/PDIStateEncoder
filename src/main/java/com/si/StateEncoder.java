@@ -73,17 +73,22 @@ public class StateEncoder extends BaseStep implements StepInterface {
     int idx = data.outputRowMeta.indexOfValue(meta.getInField());
     if(idx >= 0){
       input = (String) outRow[idx];
-      if(meta.isReverse()){
-        output = data.getStateString(input);
-      }else{
-        output = data.getStateAbbreviation(input);
-      }
-      idx = data.outputRowMeta.indexOfValue(meta.getOutField());
-      if(idx >= 0){
-        outRow[idx] = output;
-      }else{
-        if(isBasic()){
-          logBasic("Failed to Find Output Field in State Encoder");
+      if(input != null) {
+        input = input.trim().toUpperCase();
+        if(input.length() > 0) {
+          if (meta.isReverse()) {
+            output = data.getStateString(input);
+          } else {
+            output = data.getStateAbbreviation(input);
+          }
+          idx = data.outputRowMeta.indexOfValue(meta.getOutField());
+          if (idx >= 0) {
+            outRow[idx] = output;
+          } else {
+            if (isBasic()) {
+              logBasic("Failed to Find Output Field in State Encoder");
+            }
+          }
         }
       }
     }else{

@@ -110,7 +110,7 @@ public class StateEncoderMeta extends BaseStepMeta implements StepMetaInterface 
   private void readData( Node stepnode ) throws KettleXMLException {
     try {
       setInField(Const.NVL(XMLHandler.getNodeValue(XMLHandler.getSubNode(stepnode, "inField")), ""));
-      setInField(Const.NVL(XMLHandler.getNodeValue(XMLHandler.getSubNode(stepnode, "outField")), ""));
+      setOutField(Const.NVL(XMLHandler.getNodeValue(XMLHandler.getSubNode(stepnode, "outField")), ""));
       setReverse(Const.NVL(XMLHandler.getNodeValue(XMLHandler.getSubNode(stepnode, "reverse")), "N").equals("Y"));
     } catch ( Exception e ) {
       throw new KettleXMLException( "Demo plugin unable to read step info from XML node", e );

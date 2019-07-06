@@ -64,11 +64,11 @@ public class StateEncoderData extends BaseStepData implements StepDataInterface 
     stateMap.put("ALABAMA", "AL");
     stateMap.put("ALASKA", "AK");
     stateMap.put("ARIZONA", "AZ");
-    stateMap.put("ARKANSAS", "AK");
+    stateMap.put("ARKANSAS", "AR");
     stateMap.put("CALIFORNIA", "CA");
     stateMap.put("COLORADO", "CO");
     stateMap.put("CONNECTICUT", "CT");
-    stateMap.put("DELEWEARE", "DE");
+    stateMap.put("DELEWARE", "DE");
     stateMap.put("FLORIDA", "FL");
     stateMap.put("GEORGIA", "GA");
     stateMap.put("HAWAII", "HI");
@@ -81,7 +81,7 @@ public class StateEncoderData extends BaseStepData implements StepDataInterface 
     stateMap.put("LOUISIANA", "LA");
     stateMap.put("MAINE", "ME");
     stateMap.put("MARYLAND", "MD");
-    stateMap.put("MASSACHUSSETTS", "MA");
+    stateMap.put("MASSACHUSETTS", "MA");
     stateMap.put("MICHIGAN", "MI");
     stateMap.put("MINNESOTA", "MN");
     stateMap.put("MISSISSIPPI", "MS");
